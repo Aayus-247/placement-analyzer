@@ -1,14 +1,13 @@
 from pymongo import MongoClient
 import certifi
 
-client = MongoClient(
-    "mongodb+srv://dbaayush:dbaayush25@cluster0.cbl6luh.mongodb.net/dbaayush?retryWrites=true&w=majority",
-    tlsCAFile=certifi.where()
-)
+MONGO_URI = "mongodb+srv://dbaayush:dbaayush25@cluster0.cbl6luh.mongodb.net/?appName=Cluster0"
 
-# 🔥 ADD HERE
-print("Connecting to MongoDB...")
-print(client.list_database_names())
+client = MongoClient(
+    MONGO_URI,
+    tls=True,
+    tlsAllowInvalidCertificates=True
+)
 
 db = client["dbaayush"]
 reports_collection = db["reports"]
